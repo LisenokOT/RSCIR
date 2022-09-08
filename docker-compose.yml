@@ -1,0 +1,21 @@
+﻿version: '3' # версия Докера
+
+services: # контейнеры которые мы хотим запустить.
+
+  php-apache: # имя сервиса, может быть любым, но желательно, чтобы оно описывало суть этого контейнера.
+    build: # шаги, описывающие процесс билдинга.
+      ./php # где находится Dockerfile, из которого будем билдить образ для контейнера.
+    ports: # маппинг портов основной ОС к контейнеру.
+      - 9000:80
+    volumes:
+      - ./www:/var/www/html # линукуем папку с index.php и style.css с папкой в виртуальной машине.
+    depends_on:
+      - database # запустится после базы данных.
+  
+  database:
+    image: mariadb:latest # образ mysql.
+    restart: always
+    volumes: 
+      - "./sql:/docker-entrypoint-initdb.d" # линкуем файл инициализации бд к файлу запуска.
+    environment:
+      MARIADB_ROOT_PASSWORD: password
