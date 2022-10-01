@@ -14,7 +14,7 @@
         $num = $_GET['num'];
         if (isset($num) && is_numeric($num)) {
             echo 'Число: ' . $num . ' Двоичный вид: '
-                . sprintf("%07d", decbin(strval($num))) . '<br>';
+                . sprintf("%07d", decbin(strval($num))) . '<br><br>';
             // 00    0 0 0  00
             // Shape R G B  Size
             $shape =    ($num >> 5) & 3; // 00-круг 01-прямоуг 10-квадр 11-треуг
@@ -27,7 +27,6 @@
                 . ($r == 1    ? 'ff' : "00")
                 . ($g == 1  ? 'ff' : "00")
                 . ($b == 1   ? 'ff' : "00") . '"';
-            // Увеличение размера
             $size = $size * 100;
     
             $shape_tag = '';
@@ -38,6 +37,10 @@
                         // Размер
                         . " cx=" . ($radius + 10) . " cy=" . ($radius + 10)
                         // Радиус
+                        . " r=" . $radius . " ";
+                    break;
+                case 1: // Прямоугольник
+                    $shape_tag = "rect "
                         . " r=" . $radius . " ";
                     break;
                 case 1: // Прямоугольник
