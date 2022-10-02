@@ -10,10 +10,8 @@
             </form>
         </div>
     </div>
-
-    <script language="JavaScript" type="text/javascript" src="/assets/js/others.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/assets/js/chess_table.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/assets/bot/chess.js/chess.js-master/chess.js"></script>
+<script language="JavaScript" type="text/javascript" src="./assets/js/others.js"></script>
+<script language="JavaScript" type="text/javascript" src="./assets/js/chess_table.js"></script>
 
 </body>
 </html>

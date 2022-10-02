@@ -26,7 +26,6 @@
     </div>
 
 </main>
-
     
 <?php
     require "assets/blocks/footer.php";

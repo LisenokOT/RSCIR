@@ -22,10 +22,10 @@ services:
       - database
 
   php-apache:
+    hostname: mirea.dev
     build:
       ./images/php
-    ports:
-      - 9000:80
+    restart: always
     volumes:
       - ./www/dynamic:/var/www/html
     depends_on:

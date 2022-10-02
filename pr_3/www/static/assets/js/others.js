@@ -423,7 +423,7 @@ $('body').click(function (event) {
                     extra_time = book_extra_time[extra_time_elem.value];
                 }
                 setTimer(time, extra_time);
-                window.location.href = 'chess.html';
+                window.location.href = 'chess.php';
             }
         }
     }
