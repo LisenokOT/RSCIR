@@ -27,7 +27,9 @@ services:
       ./images/php
     restart: always
     volumes:
-      - ./www/dynamic:/var/www/html
+      - ./www/dynamic:/var/www/chess
+      - ./images/php/ports.conf:/etc/apache2/ports.conf
+      - ./images/php/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
       - nginx
