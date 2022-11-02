@@ -1,2 +1,2 @@
 # RSCIR
-Docker composed - Php, Apache, MySQL
+This is a project on the subject of development of server parts of Internet resources.
