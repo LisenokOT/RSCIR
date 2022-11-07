@@ -54,7 +54,6 @@ function addSubject() {
 function removeSubject()
 {
     $data = json_decode(file_get_contents('php://input'), true);
-    echo "$data";
     if (!isset($data['title'])) {
         throw new Exception("No input provided");
     }
