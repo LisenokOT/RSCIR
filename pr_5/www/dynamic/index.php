@@ -4,8 +4,8 @@
 ?>
 <a href="timetable.php">Расписание</a>
 <a href="admin/admin.php">Админ панель</a>
-<a href="1.html">info</a>
-<a href="2.html">Rome</a>
+<a href="storage/files.php">Загрузка pdf файлов</a>
+<a href="education.html">Обучение</a>
 <?php
     require "assets/blocks/footer.php";
 ?>
