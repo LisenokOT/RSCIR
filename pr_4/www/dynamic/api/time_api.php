@@ -74,7 +74,7 @@ function removeSubject()
 function updateSubjectAuditorium()
 {
     $data = json_decode(file_get_contents('php://input'), True);
-    if (!isset($data['title']) || !isset($data['password'])) {
+    if (!isset($data['title']) || !isset($data['auditorium'])) {
         throw new Exception("No input provided");
     }
     $mysqli = openMysqli();
@@ -99,10 +99,10 @@ function getSubjectByID()
     }
     $mysqli = openMysqli();
     $subID = $_GET['id'];
-    $result = $mysqli->query("SELECT * FROM titmetable WHERE ID = '{$subID}';");
+    $result = $mysqli->query("SELECT * FROM timetable WHERE ID = '{$subID}';");
     if ($result->num_rows === 1) {
         foreach ($result as $info) {
-            echo "{status: 0, title: '" . $info['title'] . "}";
+            echo "{status: 0, title: '" . $info['title'] . "'; auditorium: '" . $info['auditorium'] . "';}";
         }
         $mysqli->close();
     } else {
