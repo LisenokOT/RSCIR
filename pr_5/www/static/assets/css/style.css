@@ -1,0 +1,95 @@
+body{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    background-color: #18191B;
+    color: lightgrey;
+}
+
+
+header {
+    padding: 30px;
+    font-size-adjust: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header__text{
+    font-size: 50px;
+    text-align: center;
+    border: 2px;
+}
+
+.nav {
+    width: 100wh;
+    padding-right: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.nav__link{
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    color: lightgrey
+}
+
+.nav__link:hover{
+    color: blue
+}
+
+
+.logo_for_header {
+    padding: 0px 50px;
+    font-style: italic;
+
+}
+
+main{
+    padding: 30px;
+
+}
+
+h1:before {
+    content: '\2018';
+}
+h1:after {
+    content: '\2019';
+}
+
+h2:before {
+    content: '\201A';
+}
+h2:after {
+    content: '\201A';
+}
+
+h3:before {
+    content: '\201C';
+}
+h3:after {
+    content: '\201D';
+}
+
+h4:before {
+    content: '\201E'
+}
+h4:after {
+    content: '\201E'
+}
+h5:before {
+    content: '\00AB'
+}
+h5:after {
+    content: '\00BB'
+}
+table {
+     width: 600px;
+
+    }
