@@ -19,14 +19,45 @@ function applyLogin(name){
     elem.innerHTML = name;
 }
 
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, options = {}) {
+
+    options = {
+        path: '/',
+        ...options
+    };
+
+    if (options.expires instanceof Date) {
+        options.expires = options.expires.toUTCString();
+    }
+
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+    for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+            updatedCookie += "=" + optionValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = getCookie("theme");
     applyTheme(savedTheme);
 
-    const savedLogin = localStorage.getItem("login");
+    const savedLogin = getCookie("login");
     applyLogin(savedLogin);
     
-    const savedFigure = localStorage.getItem("figure");
+    const savedFigure = getCookie("figure");
     if (savedFigure == null)
         setFigure("images");
     else
@@ -38,14 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setFigure(type_figure){
-    localStorage.setItem('figure', type_figure);
+    setCookie('figure', type_figure);
     figure_create();
 }
 
 function setLogin(login_name){
     elem = document.getElementsByClassName("login_href")[0];
     elem.innerHTML = login_name;
-    localStorage.setItem('login', login_name);
+    setCookie('login', login_name);
 }
 
 function setColor(color){
@@ -61,12 +92,12 @@ function setColor(color){
         answer = "white";
     else 
         answer = "black";
-    localStorage.setItem('my_color', answer);
+        setCookie('my_color', answer);
 }
 
 function setTimer(time, extra_time){
-    localStorage.setItem('time', time);
-    localStorage.setItem('extra_time', extra_time);
+    setCookie('time', time);
+    setCookie('extra_time', extra_time);
 }
 
 function show_time(time, type){
@@ -222,7 +253,7 @@ $('body').click(function (event) {
     button = document.getElementsByClassName("light")[0];
     if (button != undefined){
         button.onclick = function(event) {
-            localStorage.setItem("theme", "light");
+            setCookie("theme", "light");
             applyTheme("light");
         };
     }
@@ -230,7 +261,7 @@ $('body').click(function (event) {
     button = document.getElementsByClassName("dark")[0];
     if (button != undefined){
         button.onclick = function(event) {
-            localStorage.setItem("theme", "dark");
+            setCookie("theme", "dark");
             applyTheme("dark");
         };
     }
