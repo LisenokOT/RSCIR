@@ -31,7 +31,7 @@ catch (Exception $e) {
 };
 
 function addSubject() {
-    $data = json_decode(file_get_contents('php://input'));
+    $data = json_decode(file_get_contents('php://input'), True);
     if (!isset($data['title']) || !isset($data['auditorium'])) {
         throw new Exception("No input provided");
     }
@@ -53,7 +53,7 @@ function addSubject() {
 }
 function removeSubject()
 {
-    $data = json_decode(file_get_contents('php://input'), true);
+    $data = json_decode(file_get_contents('php://input'), True);
     if (!isset($data['title'])) {
         throw new Exception("No input provided");
     }
@@ -73,7 +73,7 @@ function removeSubject()
 }
 function updateSubjectAuditorium()
 {
-    $data = json_decode(file_get_contents('php://input'), true);
+    $data = json_decode(file_get_contents('php://input'), True);
     if (!isset($data['title']) || !isset($data['password'])) {
         throw new Exception("No input provided");
     }
