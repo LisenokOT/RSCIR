@@ -1,10 +1,8 @@
-<?php $mysqli = new mysqli("database", "user", "password", "appDB"); ?>
-<DOCTYPE HTML>
-<html lang="en">
-<head>
-    <title>Hello world page</title>
-</head>
-<body>
+<?php
+    $title = 'Файлы';
+    require "../assets/blocks/header.php";
+    $mysqli = new mysqli("database", "user", "password", "appDB");
+?>
 <form enctype="multipart/form-data" action="upload.php" method="POST">
     <div>
         <input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
@@ -39,5 +37,6 @@
     }
     ?>
 </table>
-</body>
-</html>
+<?php
+    require "../assets/blocks/footer.php";
+?>

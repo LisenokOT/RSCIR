@@ -54,27 +54,27 @@ function addSubject() {
 function removeSubject()
 {
     $data = json_decode(file_get_contents('php://input'), True);
-    if (!isset($data['title'])) {
+    if (!isset($data['id'])) {
         throw new Exception("No input provided");
     }
     $mysqli = openMysqli();
-    $subTitle = $data['title'];
-    $result = $mysqli->query("SELECT * FROM timetable WHERE title = '{$subTitle}';");
+    $subID = $data['id'];
+    $result = $mysqli->query("SELECT * FROM timetable WHERE ID = '{$subID}';");
     if ($result->num_rows === 1) {
-        $query = "DELETE FROM timetable WHERE title = '" . $subTitle . "';";
+        $query = "DELETE FROM timetable WHERE ID = '" . $subID . "';";
         $mysqli->query($query);
         $mysqli->close();
-        $message = 'Removed subject ' . $subTitle;
+        $message = 'Removed subject ' . $subID;
         outputStatus(0, $message);
     } else {
-        $message = 'Subject ' . $subTitle . ' does not exist';
+        $message = 'Subject ' . $subID . ' does not exist';
         outputStatus(1, $message);
     }
 }
 function updateSubjectAuditorium()
 {
     $data = json_decode(file_get_contents('php://input'), True);
-    if (!isset($data['title']) || !isset($data['password'])) {
+    if (!isset($data['title']) || !isset($data['auditorium'])) {
         throw new Exception("No input provided");
     }
     $mysqli = openMysqli();
@@ -95,19 +95,29 @@ function updateSubjectAuditorium()
 function getSubjectByID()
 {
     if (!isset($_GET['id'])) {
-        throw new Exception("No input provided");
-    }
-    $mysqli = openMysqli();
-    $subID = $_GET['id'];
-    $result = $mysqli->query("SELECT * FROM titmetable WHERE ID = '{$subID}';");
-    if ($result->num_rows === 1) {
+        $mysqli = openMysqli();
+        $result = $mysqli->query("SELECT * FROM timetable;");
+        echo "{\nstatus: 0\n";
         foreach ($result as $info) {
-            echo "{status: 0, title: '" . $info['title'] . "}";
+            echo"title: '" . $info['title'] . "', auditorium: '" . $info['auditorium'] . "';\n";
         }
+        echo "}";
         $mysqli->close();
-    } else {
-        $message = 'Subject ID '. $subID . ' does not exist';
-        outputStatus(1, $message);
+    }
+    else{
+        $mysqli = openMysqli();
+        $subID = $_GET['id'];
+        $result = $mysqli->query("SELECT * FROM timetable WHERE ID = '{$subID}';");
+        if ($result->num_rows === 1) {
+            foreach ($result as $info) {
+                echo "{title: '" . $info['title'] . "', auditorium: '" . $info['auditorium'] . "';}";
+
+            }
+            $mysqli->close();
+        } else {
+            $message = 'Subject ID '. $subID . ' does not exist';
+            outputStatus(1, $message);
+        }
     }
 }
 ?>
