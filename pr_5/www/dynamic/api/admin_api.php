@@ -55,21 +55,20 @@ function addUser() {
 }
 function removeUser()
 {
-    $data = json_decode(file_get_contents('php://input'), true);
-    if (!isset($data['name'])) {
+    if (!isset($_GET['id'])) {
         throw new Exception("No input provided");
     }
     $mysqli = openMysqli();
-    $usrName = $data['name'];
-    $result = $mysqli->query("SELECT * FROM users WHERE name = '{$usrName}';");
+    $usrID = $_GET['id'];
+    $result = $mysqli->query("SELECT * FROM users WHERE ID = '{$usrID}';");
     if ($result->num_rows === 1) {
-        $query = "DELETE FROM users WHERE name = '" . $usrName . "';";
+        $query = "DELETE FROM users WHERE ID = '" . $usrID . "';";
         $mysqli->query($query);
         $mysqli->close();
-        $message = 'Removed user ' . $usrName;
+        $message = 'Removed user ' . $usrID;
         outputStatus(0, $message);
     } else {
-        $message = 'User ' . $usrName . ' does not exist';
+        $message = 'User ' . $usrID . ' does not exist';
         outputStatus(1, $message);
     }
 }
@@ -98,19 +97,28 @@ function updateUserPassword()
 function getUserByID()
 {
     if (!isset($_GET['id'])) {
-        throw new Exception("No input provided");
-    }
-    $mysqli = openMysqli();
-    $usrID = $_GET['id'];
-    $result = $mysqli->query("SELECT * FROM users WHERE ID = '{$usrID}';");
-    if ($result->num_rows === 1) {
+        $mysqli = openMysqli();
+        $result = $mysqli->query("SELECT * FROM users;");
+        echo "{\nstatus: 0\n";
         foreach ($result as $info) {
-            echo "{status: 0, name: '" . $info['name'] . "}";
+            echo"name: '" . $info['name'] . "', password: '" . $info['password'] . "';\n";
         }
+        echo "}";
         $mysqli->close();
-    } else {
-        $message = 'User ID '. $usrID . ' does not exist';
-        outputStatus(1, $message);
+    }
+    else {
+        $mysqli = openMysqli();
+        $usrID = $_GET['id'];
+        $result = $mysqli->query("SELECT * FROM users WHERE ID = '{$usrID}';");
+        if ($result->num_rows === 1) {
+            foreach ($result as $info) {
+                echo "{status: 0, name: '" . $info['name'] . "', password: '" . $info['password'] . "';}";
+            }
+            $mysqli->close();
+        } else {
+            $message = 'User ID '. $usrID . ' does not exist';
+            outputStatus(1, $message);
+        }
     }
 }
 function generatePass($usrName, $usrPass) {

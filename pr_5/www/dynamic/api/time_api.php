@@ -53,12 +53,11 @@ function addSubject() {
 }
 function removeSubject()
 {
-    $data = json_decode(file_get_contents('php://input'), True);
-    if (!isset($data['id'])) {
+    if (!isset($_GET['id'])) {
         throw new Exception("No input provided");
     }
     $mysqli = openMysqli();
-    $subID = $data['id'];
+    $subID = $_GET['id'];
     $result = $mysqli->query("SELECT * FROM timetable WHERE ID = '{$subID}';");
     if ($result->num_rows === 1) {
         $query = "DELETE FROM timetable WHERE ID = '" . $subID . "';";
