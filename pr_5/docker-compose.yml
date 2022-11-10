@@ -10,6 +10,7 @@ services:
       - ./www/dynamic:/var/www/denis
       - ./images/php/ports.conf:/etc/apache2/ports.conf
       - ./images/php/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./images/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - database
   
