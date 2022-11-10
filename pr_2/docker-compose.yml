@@ -14,7 +14,7 @@ services: # контейнеры которые мы хотим запустит
   
   database:
     image: mariadb:latest # образ mysql.
-    restart: always # пуолитика перезагрузок
+    restart: always # политика перезагрузок
     volumes: 
       - "./sql:/docker-entrypoint-initdb.d" # линкуем файл инициализации бд к файлу запуска.
     environment:
