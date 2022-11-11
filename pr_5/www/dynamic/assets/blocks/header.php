@@ -1,4 +1,17 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+
+if (!isset($_COOKIE['theme'])){
+    if (isset($_SESSION['theme'])) {
+        $_COOKIE['theme'] = $_SESSION['theme'];
+    }
+    $_COOKIE['theme'] = "dark";
+    $_SESSION['theme'] = "dark";
+}
+if (isset($_COOKIE['theme'])){
+    $_SESSION['theme'] = $_COOKIE['theme'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
