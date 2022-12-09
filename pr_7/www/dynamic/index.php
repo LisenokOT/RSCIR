@@ -3,8 +3,6 @@
 session_start();
 date_default_timezone_set("Europe/Moscow");
 
-# File from root directory
-
 # Get class
 function getClass($path, $classtype)
 {
