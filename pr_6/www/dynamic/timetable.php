@@ -1,7 +1,6 @@
-<?php
-    $title = 'Расписание';
-    require "assets/blocks/header.php";
-?>
+<head>
+<title>Расписание</title>
+</head>
 
 <div>
     <h1>Каталог</h1>
@@ -23,11 +22,7 @@
 		<td>{$row['title']}</td><td>{$row['auditorium']}</td>
 	    </tr>";
 	}
+    $mysqli->close();
 ?>
     </table>
 </div>
-
-<?php
-    $mysqli->close();
-    require "assets/blocks/footer.php";
-?>

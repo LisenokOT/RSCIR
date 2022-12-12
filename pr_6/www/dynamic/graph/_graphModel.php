@@ -21,9 +21,7 @@ require_once getFileUnderRoot('jpgraph/jpgraph_bar.php');
 require_once getFileUnderRoot('jpgraph/jpgraph_pie.php');
 use Nelmio\Alice\Loader\NativeLoader as AliceFixtures;
 
-/**
- * @suppress PHP0413
- */
+
 class funAliceFixtures extends AliceFixtures
 {
   public function getSeed()
@@ -33,11 +31,6 @@ class funAliceFixtures extends AliceFixtures
   }
 }
 
-/** Игнорирование невидимости
- * @suppress PHP0413
- * @suppress PHP0415
- * @suppress PHP0418
- */
 class graphModel extends baseModel
 {
   // Размеры изображений
@@ -64,7 +57,6 @@ class graphModel extends baseModel
   {
     $objNames = 'fixture{1..' . $this->graphs_num . '}';
     $loader = new funAliceFixtures(); // Случайные графики
-    //$loader = new AliceFixtures();
     $objectSet = $loader->loadData([
       Shape::class => [
         $objNames => [
