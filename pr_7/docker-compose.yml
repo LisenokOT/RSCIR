@@ -15,7 +15,7 @@ services:
       - database
   
   nginx:
-   build: ./images/nginx
+   image: nginx:latest
    restart: always
    ports:
      - 8080:8080
