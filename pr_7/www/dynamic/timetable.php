@@ -1,8 +1,3 @@
-<?php
-    $title = 'Расписание';
-    require "assets/blocks/header.php";
-?>
-
 <div>
     <h1>Каталог</h1>
     <?php
@@ -26,8 +21,3 @@
 ?>
     </table>
 </div>
-
-<?php
-    $mysqli->close();
-    require "assets/blocks/footer.php";
-?>
